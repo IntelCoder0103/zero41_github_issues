@@ -5,8 +5,13 @@ defmodule Zero41RetrieveGithubIssuesWeb.IssueLive.Index do
   alias Zero41RetrieveGithubIssues.Issues.Issue
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, stream(socket, :issues, Issues.list_issues())}
+  def mount(params, _session, socket) do
+    page = params["page"] || 1
+    per_page = params["per_page"] || 10
+    {issues, links} =  Issues.list_issues(%{"page" => page, "per_page" => per_page})
+    {:ok, stream(socket, :issues, issues)
+      |> assign(:links, links)
+    }
   end
 
   @impl true

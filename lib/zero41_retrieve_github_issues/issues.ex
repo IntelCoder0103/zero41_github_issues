@@ -18,11 +18,15 @@ defmodule Zero41RetrieveGithubIssues.Issues do
       [%Issue{}, ...]
 
   """
-  def list_issues do
-    {:ok, body} = GithubClient.list_issues()
+  def list_issues(%{"page" => page, "per_page" => per_page} = params) do
+    {:ok, body, links} = GithubClient.list_issues(params)
+    IO.inspect(links)
 
-    body
-    |> Enum.map(fn issue -> map_issue(issue) end)
+    {
+      body
+        |> Enum.map(fn issue -> map_issue(issue) end),
+      links
+    }
   end
 
   @doc """

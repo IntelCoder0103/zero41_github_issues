@@ -688,4 +688,14 @@ defmodule Zero41RetrieveGithubIssuesWeb.CoreComponents do
     <%= @markdown %>
     """
   end
+
+  attr :link, :string, default: nil
+  attr :text, :string, default: nil
+  def pagination_button(assigns) do
+    ~H"""
+      <.link navigate={"/issues?#{@link || ""}"}>
+        <.button class="!bg-zinc-100 hover:!bg-zinc-50 border !text-zinc-700 disabled:!bg-zinc-200 disabled:opacity-60" disabled={!@link}>{@text}</.button>
+      </.link>
+    """
+  end
 end
