@@ -130,3 +130,9 @@ defmodule Zero41RetrieveGithubIssues.Issues do
       }
   end
 end
+
+defmodule Zero41RetrieveGithubIssues.IssuesBehavior do
+  @callback list_issues(map()) :: {list(), map()}
+  @callback get_issue!(integer()) :: map()
+  @callback delete_issue(map()) :: {:ok, any()} | {:error, any()}
+end

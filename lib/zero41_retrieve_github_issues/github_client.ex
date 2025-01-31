@@ -8,8 +8,9 @@ defmodule Zero41RetrieveGithubIssues.GithubClient do
 
   def list_issues(%{"page" => page, "per_page" => per_page} = params) do
     get(
-      "/issues?state=open&per_page=#{per_page}&page=#{page}",
-      headers: headers()
+      "/issues",
+      headers: headers(),
+      query: params
       )
     |> handle_paginated_response()
   end

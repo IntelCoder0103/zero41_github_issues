@@ -60,7 +60,8 @@ defmodule Zero41RetrieveGithubIssues.MixProject do
       {:dotenvy, "~> 1.0.0"},
       {:tesla, "~> 1.7"},
       {:earmark, "~> 1.1"},
-       {:ex_cldr_dates_times, "~> 2.0"}
+      {:ex_cldr_dates_times, "~> 2.0"},
+      {:mock, "~> 0.3.9", only: :test}
     ]
   end
 
