@@ -673,4 +673,29 @@ defmodule Zero41RetrieveGithubIssuesWeb.CoreComponents do
   def translate_errors(errors, field) when is_list(errors) do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
   end
+
+  def markdown(assigns) do
+    text = if assigns.text == nil, do: "", else: assigns.text
+
+    markdown_html =
+      String.trim(text)
+      |> Earmark.as_html!(code_class_prefix: "lang- language-")
+      |> Phoenix.HTML.raw()
+
+    assigns = assign(assigns, :markdown, markdown_html)
+
+    ~H"""
+    <%= @markdown %>
+    """
+  end
+
+  attr :link, :string, default: nil
+  attr :text, :string, default: nil
+  def pagination_button(assigns) do
+    ~H"""
+      <.link navigate={"/issues?#{@link || ""}"}>
+        <.button class="!bg-zinc-100 hover:!bg-zinc-50 border !text-zinc-700 disabled:!bg-zinc-200 disabled:opacity-60" disabled={!@link}>{@text}</.button>
+      </.link>
+    """
+  end
 end

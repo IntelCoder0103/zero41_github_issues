@@ -33,6 +33,8 @@ defmodule Zero41RetrieveGithubIssues.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.7.18"},
+      {:phoenix_ecto, "~> 4.4"},
+      {:ecto_sql, "~> 3.10"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 1.0.0"},
@@ -54,7 +56,12 @@ defmodule Zero41RetrieveGithubIssues.MixProject do
       {:gettext, "~> 0.26"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:dotenvy, "~> 1.0.0"},
+      {:tesla, "~> 1.7"},
+      {:earmark, "~> 1.1"},
+      {:ex_cldr_dates_times, "~> 2.0"},
+      {:mock, "~> 0.3.9", only: :test}
     ]
   end
 

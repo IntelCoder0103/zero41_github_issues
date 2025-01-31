@@ -1,5 +1,15 @@
 import Config
+import Dotenvy
 
+source!([
+  if config_env() == :dev do
+    Path.absname(".env.local")
+  else
+    Path.absname(".env.#{config_env()}")
+  end,
+  System.get_env()
+])
+config :zero41_retrieve_github_issues, :github_personal_token, env!("GITHUB_PERSONAL_TOKEN", :string)
 # config/runtime.exs is executed for all environments, including
 # during releases. It is executed after compilation and before the
 # system starts, so it is typically used to load production configuration

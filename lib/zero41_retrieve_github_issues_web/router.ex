@@ -18,6 +18,13 @@ defmodule Zero41RetrieveGithubIssuesWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    live "/issues", IssueLive.Index, :index
+    live "/issues/new", IssueLive.Index, :new
+    live "/issues/:id/edit", IssueLive.Index, :edit
+
+    live "/issues/:owner/:repo/:number", IssueLive.Show, :show
+    live "/issues/:owner/:repo/:number/show/edit", IssueLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

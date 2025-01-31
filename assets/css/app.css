@@ -3,3 +3,12 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+
+.markdown {
+  h3{
+    font-size: larger;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+  }
+}

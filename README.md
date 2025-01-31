@@ -1,18 +1,70 @@
-# Zero41RetrieveGithubIssues
+# Zero41 GitHub Issues Viewer
 
-To start your Phoenix server:
+## Overview
+This project is an **Elixir Phoenix LiveView** application that allows a logged-in GitHub user to view a list of open issues assigned to them. The app fetches issues from GitHub's API using a personal access token provided via a `.env.local` file.
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+## Features
+- **List all open issues** assigned to the logged-in GitHub user.
+- **Filter out closed issues** so only open issues appear.
+- **View issue details**, including issue number, title, creation date, and body.
+- **Navigate back to the issues list** from the details page.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Prerequisites
+To run this project, ensure you have the following installed:
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+- **Elixir** (>= 1.14)
+- **Phoenix Framework** (>= 1.7)
+- **GitHub Personal Access Token** (for API authentication)
 
-## Learn more
+## Setup Instructions
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/IntelCoder0103/zero41_github_issues.git
+   cd zero41_github_issues
+   ```
+
+2. **Set up environment variables:**
+   - Create a `.env.local` file in the project root.
+   - Add your **GitHub Personal Access Token**:
+     ```sh
+     GITHUB_PERSONAL_TOKEN=your_github_token_here
+     ```
+
+3. **Install dependencies:**
+   ```sh
+   mix deps.get
+   ```
+
+4. **Start the Phoenix server:**
+   ```sh
+   mix phx.server
+   ```
+   The application will be available at `http://localhost:4000`.
+
+## Usage
+- Open `http://localhost:4000` in your browser.
+- Log in with your GitHub token.
+- View the list of open issues assigned to you.
+- Click on an issue to view its details.
+- Use the **Back to Issues** link to return to the list.
+
+## API Integration
+This application interacts with GitHub's API:
+- **Fetching Issues**: Uses `GET https://api.github.com/issues` with authentication.
+- **Authentication**: Requires a **GitHub Personal Access Token** in the `Authorization` header.
+
+## Testing
+Create a `.env.test` file in the project root as follows.
+```sh
+GITHUB_PERSONAL_TOKEN=
+```
+
+Run the test suite with:
+```sh
+mix test
+```
+
+## Notes
+- Ensure `.env.local` is **not** committed to version control.
+- If you face authentication issues, check your GitHub token permissions.
